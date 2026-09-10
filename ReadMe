@@ -1,0 +1,189 @@
+Absolutely. Let’s learn **Gradio hands-on**, assuming you are using **Google Colab**.
+
+We’ll go step by step. **For now, only Step 1.** Once you say **“next”**, I’ll give you Step 2.
+
+# Step 1 — Your first Gradio app 🚀
+
+### 1. Open Google Colab
+
+Go to **Google Colab** and create a new notebook.
+
+In the first cell, install Gradio:
+
+```python
+!pip install gradio
+```
+
+Run it using **Shift + Enter**.
+
+---
+
+### 2. Create a simple Python function
+
+In the next cell:
+
+```python
+def greet(name):
+    return "Hello " + name
+```
+
+This is just a normal Python function.
+
+For example:
+
+```python
+greet("Raju")
+```
+
+gives:
+
+```text
+Hello Raju
+```
+
+---
+
+### 3. Turn that function into a web UI
+
+Now add:
+
+```python
+import gradio as gr
+
+demo = gr.Interface(
+    fn=greet,
+    inputs="text",
+    outputs="text"
+)
+
+demo.launch()
+```
+
+Run the cell.
+
+Gradio will create a small web interface containing:
+
+```text
+┌─────────────────────────────┐
+│ Enter your name             │
+│ [_______________________]   │
+│                             │
+│        Submit               │
+│                             │
+│ Output: Hello Raju          │
+└─────────────────────────────┘
+```
+
+Enter:
+
+```text
+Raju
+```
+
+and click **Submit**.
+
+You should get:
+
+```text
+Hello Raju
+```
+
+---
+
+# Understand the important part
+
+This:
+
+```python
+def greet(name):
+    return "Hello " + name
+```
+
+is your **AI/ML logic**.
+
+And this:
+
+```python
+gr.Interface(
+    fn=greet,
+    inputs="text",
+    outputs="text"
+)
+```
+
+is the **frontend**.
+
+Think of it like this:
+
+```text
+User
+  ↓
+Gradio textbox
+  ↓
+Python function
+  ↓
+Result
+  ↓
+Gradio output box
+```
+
+So Gradio is basically a **bridge between your Python/ML model and a web UI**.
+
+### One very important concept
+
+`fn` means **the function Gradio should call**.
+
+```python
+fn=greet
+```
+
+`inputs` means **what the user provides**.
+
+```python
+inputs="text"
+```
+
+`outputs` means **what your function returns**.
+
+```python
+outputs="text"
+```
+
+---
+
+## Your first exercise
+
+Change:
+
+```python
+def greet(name):
+    return "Hello " + name
+```
+
+to:
+
+```python
+def greet(name):
+    return "Welcome to my AI application, " + name + "!"
+```
+
+Then run the Gradio app again.
+
+Try entering:
+
+```text
+Raju
+```
+
+You should see:
+
+```text
+Welcome to my AI application, Raju!
+```
+
+### What you just learned
+
+**Python function → Gradio input → Gradio output**
+
+That's the fundamental idea behind Gradio.
+
